@@ -29,12 +29,15 @@
 using namespace std;
 /* constructor */
 Tree::Tree(){
-  root=NULL;
+  /* root is set to NULL */
+  root = NULL;
 }
 /* destructor */
 Tree::~Tree(){
+  /* calls destroy tree with root */
   destroy_tree();
 }
+/* recursively destroys tree nodes */
 void Tree::destroy_tree(node *leaf){
   if(leaf!=NULL){
     destroy_tree(leaf->left);
@@ -42,8 +45,13 @@ void Tree::destroy_tree(node *leaf){
     delete leaf;
   }
 }
+/* calls the destroy_tree function on root */
+void Tree::destroy_tree(){
+  destroy_tree(root);
+}
+/* function to insert values into tree recursively */
 void Tree::insert(int key, node *leaf){
-  if(key< leaf->key_value){
+  if(key < leaf->key_value){
     if(leaf->left!=NULL){
      insert(key, leaf->left);
     }else{
@@ -63,6 +71,18 @@ void Tree::insert(int key, node *leaf){
     }
   }
 }
+/* calls insert function from root */
+void Tree::insert(int key){
+  if(root!=NULL){
+    insert(key, root);
+  }else{
+    root=new node;
+    root->key_value=key;
+    root->left=NULL;
+    root->right=NULL;
+  }
+}
+/* searches through tree recursively */
 node *Tree::search(int key, node *leaf){
   if(leaf!=NULL){
     if(key==leaf->key_value){
@@ -77,20 +97,7 @@ node *Tree::search(int key, node *leaf){
    return NULL;
   }
 }
+/* calls search on root */
 node *Tree::search(int key){
   return search(key, root);
-}
-void Tree::insert(int key){
-  if(root!=NULL){
-    insert(key, root);
-  }else{
-    root=new node;
-    root->key_value=key;
-    root->left=NULL;
-    root->right=NULL;
-  }
-}
-
-void Tree::destroy_tree(){
-  destroy_tree(root);
 }
