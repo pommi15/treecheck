@@ -24,16 +24,17 @@
 #include <vector>
 #include <memory>
 #include "tree.h"
+#include "txtImport.h"
 
 using namespace std;
 
 int main(){
   auto groot = std::make_shared<Tree>();
-  groot->insert(4);
-  groot->insert(3);
-  groot->insert(2);
-  int shout = groot->search(4)->key_value;
-  cout << shout << endl;
+  auto import = std::make_shared<TxtImport>();
+  import->read("test.txt");
+  for(int i : import->input_vector) {
+    groot->insert(import->input_vector[i]);
+  }
 
   return 0;
 }

@@ -19,3 +19,25 @@
   |         if15b038       |
   |                        |
   +------------------------+*/
+#include <string>
+#include <iostream>
+#include <vector>
+#include <iostream>
+#include <fstream>
+
+#include "txtImport.h"
+
+using namespace std;
+
+TxtImport::TxtImport(){
+}
+TxtImport::~TxtImport(){
+}
+void TxtImport::read(std::string filepath){
+
+  std::ifstream input(filepath, std::ios::binary | ios::in);  // Open the file
+  std::string line;                                           // Temp variable
+  while (std::getline(input, line)){     // Read lines as long as the file is
+    this->input_vector.push_back(std::stoi(line));  // Save the line in the vector
+  }
+}
