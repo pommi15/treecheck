@@ -42,6 +42,7 @@ public:
   void AVL_check();
   int max;
   int min;
+  bool AVL;
 private:
   void destroy_tree(node *leaf);
   void insert(int key, node *leaf);

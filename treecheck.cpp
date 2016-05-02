@@ -40,6 +40,8 @@ int main(int argc, char* argv[]){
   for(int i : import->input_vector) {
     groot->insert(import->input_vector[i]);
   }
+  groot->AVL_check();
+
   cout << "max: "<< groot->max << " " << "min: " << groot->min << " "  << "avg: " << import->avg << endl;
 
 

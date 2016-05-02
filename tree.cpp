@@ -31,6 +31,7 @@ using namespace std;
 Tree::Tree(){
   /* root is set to NULL */
   this->root = NULL;
+  this->AVL = true;
 }
 /* destructor */
 Tree::~Tree(){
@@ -109,9 +110,16 @@ node *Tree::search(int key){
   return search(key, root);
 }
 void Tree::AVL_check(node *leaf){
-  if(leaf!=NULL){
-
+  int avl_value = 0;
+  if(leaf->right != NULL){
+    ++avl_value;
+    AVL_check(leaf->right);
   }
+  if(leaf->left != NULL){
+    --avl_value;
+    AVL_check(leaf->left);
+  }
+  cout << "bal(" << leaf->key_value << ") = " << avl_value << endl;
 }
 void Tree::AVL_check(){
   return AVL_check(root);
