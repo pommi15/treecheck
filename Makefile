@@ -17,3 +17,7 @@ txtImport.o: txtImport.cpp
 
 tree.o: tree.cpp
 	${CC} ${CFLAGS} -c tree.cpp -o tree.o
+
+.PHONY: clean
+clean:
+	rm -f *.o treecheck
