@@ -37,10 +37,11 @@ int main(int argc, char* argv[]){
   cout << argv[1] << endl;
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
-  import->read("test.txt");
+  import->read(argv[1]);
   for(int i : import->input_vector) {
     groot->insert(import->input_vector[i]);
   }
+
 
   return 0;
 }
