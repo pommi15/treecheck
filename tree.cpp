@@ -30,7 +30,7 @@ using namespace std;
 /* constructor */
 Tree::Tree(){
   /* root is set to NULL */
-  root = NULL;
+  this->root = NULL;
 }
 /* destructor */
 Tree::~Tree(){
@@ -51,6 +51,13 @@ void Tree::destroy_tree(){
 }
 /* function to insert values into tree recursively */
 void Tree::insert(int key, node *leaf){
+  if(key<this->min){
+    this->min = key;
+  }
+  if(key>this->max){
+    this->max = key;
+  }
+
   if(key < leaf->key_value){
     if(leaf->left!=NULL){
      insert(key, leaf->left);
@@ -101,3 +108,44 @@ node *Tree::search(int key, node *leaf){
 node *Tree::search(int key){
   return search(key, root);
 }
+void Tree::AVL_check(node *leaf){
+  if(leaf!=NULL){
+
+  }
+}
+void Tree::AVL_check(){
+  return AVL_check(root);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

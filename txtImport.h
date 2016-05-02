@@ -34,5 +34,6 @@ public:
   ~TxtImport();
   std::vector<int> input_vector;
   void read(std::string filepath);
+  double avg;
 };
   #endif //TXTIMPORT_H_

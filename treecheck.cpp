@@ -34,13 +34,14 @@ int main(int argc, char* argv[]){
     cout << "Please give a valid filepath!" << endl;
     return 0;
   }
-  cout << argv[1] << endl;
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
   import->read(argv[1]);
   for(int i : import->input_vector) {
     groot->insert(import->input_vector[i]);
   }
+  cout << "max: "<< groot->max << " " << "min: " << groot->min << " "  << "avg: " << import->avg << endl;
+
 
 
   return 0;
