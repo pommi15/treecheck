@@ -28,7 +28,13 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
+  if(argc>2){
+    cout << "Invalid input!" << endl;
+    cout << "Please give a valid filepath!" << endl;
+    return 0;
+  }
+  cout << argv[1] << endl;
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
   import->read("test.txt");
