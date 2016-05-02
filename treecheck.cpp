@@ -22,14 +22,18 @@
 #include <string>
 #include <iostream>
 #include <vector>
-
+#include <memory>
 #include "tree.h"
 
 using namespace std;
 
 int main(){
-  auto groot = std::make_shared<Tree>;
-
+  auto groot = std::make_shared<Tree>();
+  groot->insert(4);
+  groot->insert(3);
+  groot->insert(2);
+  int shout = groot->search(4)->key_value;
+  cout << shout << endl;
 
   return 0;
 }

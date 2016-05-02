@@ -7,7 +7,7 @@ CFLAGS=-g -Wall -std=c++11
 all: treecheck
 
 treecheck: treecheck.o txtImport.o tree.o
-	${CC} ${CFLAGS} txtImport.o tree.o -o treecheck
+	${CC} ${CFLAGS} treecheck.o txtImport.o tree.o -o treecheck
 
 treecheck.o: treecheck.cpp
 	${CC} ${CFLAGS} -c treecheck.cpp -o treecheck.o
