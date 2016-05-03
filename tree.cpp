@@ -121,6 +121,8 @@ void Tree::AVL_check(node *leaf){
     avl_value -= AVL_height(leaf->left);
     AVL_check(leaf->left);
   }
+  /* recursion happens unitl here, the rest is just output */
+
   /* checks if AVL condition is met for the node gives the respective output */
   if(avl_value < -1 || avl_value > 1){
       /* beautifies the output to have the "=" even on every line*/

@@ -34,11 +34,12 @@ TxtImport::TxtImport(){
 TxtImport::~TxtImport(){
 }
 void TxtImport::read(std::string filepath){
+  /* temp_counter counts how many numbers are read in to make an average */
   double temp_counter = 0.0;
-  std::ifstream input(filepath);  // Open the file
-  std::string line;                                           // Temp variable
-  while (std::getline(input, line)){     // Read lines as long as the file is
-    this->input_vector.push_back(std::stoi(line)); // Save the line in the vector
+  std::ifstream input(filepath);                   // open the file
+  std::string line;                                // temp variable
+  while (std::getline(input, line)){               // read lines as long as the file is
+    this->input_vector.push_back(std::stoi(line)); // save the line in the vector
     this->avg += std::stoi(line);
     temp_counter++;
 

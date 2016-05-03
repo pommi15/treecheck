@@ -45,11 +45,11 @@ public:
   bool AVL;               //bool to hold if tree is AVL
 
 private:
-  int AVL_height(node *leaf);
-  void destroy_tree(node *leaf);
-  void insert(int key, node *leaf);
-  node *root;
-  void AVL_check(node *leaf);
+  int AVL_height(node *leaf);       //checking the remaining height vrom a node
+  void destroy_tree(node *leaf);    //private part of the destroy function
+  void insert(int key, node *leaf); //private part of the insert function
+  node *root;                       //variable for root
+  void AVL_check(node *leaf);       //private part of the AVL-check function
 };
 
 #endif  // TREE_H_

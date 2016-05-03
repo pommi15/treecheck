@@ -29,10 +29,10 @@
 
 class TxtImport {
 public:
-  TxtImport();
-  ~TxtImport();
-  std::vector<int> input_vector;
-  void read(std::string filepath);
+  TxtImport();                      //constructor
+  ~TxtImport();                     //destructor
+  std::vector<int> input_vector;    //vector for the read in numbers
+  void read(std::string filepath);  //function to read the numbers into the vector from given file
   double avg;
 };
   #endif //TXTIMPORT_H_
