@@ -41,7 +41,11 @@ int main(int argc, char* argv[]){
     groot->insert(i);
   }
   groot->AVL_check();
-
+  if(groot->AVL){
+    cout << "AVL: yes" << endl;
+  }else{
+    cout << "AVL: no" << endl;
+  }
   cout << "max: "<< groot->max << " " << "min: " << groot->min << " "  << "avg: " << import->avg << endl;
 
 

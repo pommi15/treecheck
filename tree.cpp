@@ -121,14 +121,15 @@ void Tree::AVL_check(node *leaf){
       if(leaf->key_value > 9){
         cout << "bal(" << leaf->key_value << ") = " << avl_value;
       }else{
-        cout << "bal(0" << leaf->key_value << ") = " << avl_value;
+        cout << "bal (" << leaf->key_value << ") = " << avl_value;
       }
       cout << " (AVL violation!)" << endl;
+      this->AVL = false;
   }else{
     if(leaf->key_value > 9){
       cout << "bal(" << leaf->key_value << ") = " << avl_value << endl;
     }else{
-      cout << "bal(0" << leaf->key_value << ") = " << avl_value << endl;
+      cout << "bal (" << leaf->key_value << ") = " << avl_value << endl;
     }
   }
 }
