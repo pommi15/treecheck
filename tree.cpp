@@ -32,8 +32,7 @@ Tree::Tree(){
   /* root is set to NULL */
   this->root = NULL;
   this->AVL = true;
-  this->min_first = true;
-  this->max_first = true;
+  this->first = true;
 }
 /* destructor */
 Tree::~Tree(){
@@ -80,23 +79,18 @@ void Tree::insert(int key, node *leaf){
 }
 /* public instert function that calls private insert function from root */
 void Tree::insert(int key){
-  /* finds out minimum entered value */
-  if(min_first){
+  /* finds out minimum and minimum entered value */
+  if(first){
     this->min_value = key;
-    min_first = false;
-  }else{
-    if(key<this->min_value){
-      this->min_value = key;
-    }
-  }
-  /* finds out maximum entered value */
-  if(max_first){
     this->max_value = key;
-    max_first = false;
+    first = false;
   }else{
-    if(key>this->max_value){
+    if(key < this->min_value){
+      this->min_value = key;
+    }else if(key > this->min_value){
       this->max_value = key;
     }
+
   }
   if(root!=NULL){
     /* if there is a vlaue stored in root insert is called again */
@@ -129,20 +123,38 @@ void Tree::AVL_check(node *leaf){
   }
   /* checks if AVL condition is met for the node gives the respective output */
   if(avl_value < -1 || avl_value > 1){
-      /* beautifies the output to have the "=" on every line*/
+      /* beautifies the output to have the "=" even on every line*/
       if(leaf->key_value > 9){
-        cout << "bal(" << leaf->key_value << ") = " << avl_value;
+        cout << "|  bal(" << leaf->key_value << ") = ";
+        if(avl_value < 0 || avl_value > 9){
+          cout << avl_value;
+        }else{
+          cout << " " << avl_value;
+        }
       }else{
-        cout << "bal (" << leaf->key_value << ") = " << avl_value;
+        if(avl_value < 0 || avl_value > 9){
+          cout << "|  bal (" << leaf->key_value << ") = " << avl_value;
+        }else{
+          cout << "|  bal (" << leaf->key_value << ") =  " << avl_value;
+        }
       }
-      cout << " (AVL violation!)" << endl;
+      cout << " (AVL violation!)" << "  |" << endl;
+      //if an AVL violation occurs AVL is set to false
       this->AVL = false;
   }else{
-    /* beautifies the output to have the "=" on every line*/
+    /* beautifies the output to have the "=" even on every line*/
     if(leaf->key_value > 9){
-      cout << "bal(" << leaf->key_value << ") = " << avl_value << endl;
+      if(avl_value < 0 || avl_value > 9){
+        cout << "|  bal(" << leaf->key_value << ") = " << avl_value << "                  |" << endl;
+      }else{
+        cout << "|  bal(" << leaf->key_value << ") =  " << avl_value << "                   |" << endl;
+      }
     }else{
-      cout << "bal (" << leaf->key_value << ") = " << avl_value << endl;
+      if(avl_value < 0 || avl_value > 9){
+        cout << "|  bal (" << leaf->key_value << ") = " << avl_value << "                   |" << endl;
+      }else{
+        cout << "|  bal (" << leaf->key_value << ") =  " << avl_value << "                   |" << endl;
+      }
     }
   }
 }
@@ -151,7 +163,7 @@ void Tree::AVL_check(){
   return AVL_check(root);
 }
 /* checks hight from a node downwards to make calculate the AVL value with
-  AVL_value = AVL_height(right) - AVL_heightleft)
+  AVL_value = AVL_height(right) - AVL_height(left)
 */
 int Tree::AVL_height(node *leaf){
   /* if right and left are NULL height is 0*/

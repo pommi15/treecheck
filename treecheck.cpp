@@ -39,6 +39,11 @@ int main(int argc, char* argv[]){
     cout << "Please give a filepath!" << endl;
     return 0;
   }
+  cout << "+---------------------------------+" << endl;
+  cout << "|            treecheck            |" << endl;
+  cout << "|         let's check some        |" << endl;
+  cout << "|       fucking trees, brah!      |" << endl;
+  cout << "+---------------------------------+" << endl;
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
   import->read(argv[1]);
@@ -46,11 +51,24 @@ int main(int argc, char* argv[]){
     groot->insert(i);
   }
   groot->AVL_check();
+  cout << "+---------------------------------+"<< endl;
+  cout << "|  Is this tree an AVL-Tree?";
   if(groot->AVL){
-    cout << "AVL: yes" << endl;
+    cout << " Yes. |" << endl;
   }else{
-    cout << "AVL: no" << endl;
+    cout << " No.  |" << endl;
   }
-  cout << "max: "<< groot->max_value << " " << "min: " << groot->min_value << " "  << "avg: " << import->avg << endl;
+
+  cout << "|  maximum entered value: "<< groot->max_value << "      |" << endl;
+  cout << "|  minimum entered value: " << groot->min_value << "       |" << endl;
+  if(import->avg > 9.99 || import->avg < 0){
+    cout.precision(4);
+    cout << "|  average entered value: " << import->avg << "   |" << endl;
+  }else{
+    cout.precision(3);
+    cout << "|  average entered value: " << import->avg << "    |" << endl;
+  }
+  cout << "+---------------------------------+"<< endl;
+
   return 0;
 }
