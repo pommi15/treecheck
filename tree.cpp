@@ -109,24 +109,6 @@ void Tree::insert(int key){
     root->right=NULL;
   }
 }
-/* searches through tree recursively */
-node *Tree::search(int key, node *leaf){
-  if(leaf!=NULL){
-    if(key==leaf->key_value){
-      return leaf;
-    }
-    if(key<leaf->key_value){
-      return search(key, leaf->left);
-    }else{
-      return search(key, leaf->right);
-    }
-  }else{
-   return NULL;
-  }
-}
-node *Tree::search(int key){
-  return search(key, root);
-}
 /* private function that checks all the trees nodes and gives their AVL value*/
 void Tree::AVL_check(node *leaf){
   /* initial avl value before check */
