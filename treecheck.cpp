@@ -19,3 +19,32 @@
   |         if15b038       |
   |                        |
   +------------------------+*/
+#include <string>
+#include <iostream>
+#include <vector>
+#include <memory>
+#include "tree.h"
+#include "txtImport.h"
+
+using namespace std;
+
+int main(int argc, char* argv[]){
+  if(argc>2){
+    cout << "Invalid input!" << endl;
+    cout << "Please give a valid filepath!" << endl;
+    return 0;
+  }
+  auto groot = std::make_shared<Tree>();
+  auto import = std::make_shared<TxtImport>();
+  import->read(argv[1]);
+  for(int i : import->input_vector) {
+    groot->insert(i);
+  }
+  groot->AVL_check();
+
+  cout << "max: "<< groot->max << " " << "min: " << groot->min << " "  << "avg: " << import->avg << endl;
+
+
+
+  return 0;
+}

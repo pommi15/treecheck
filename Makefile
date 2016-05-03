@@ -6,11 +6,18 @@ CFLAGS=-g -Wall -std=c++11
 
 all: treecheck
 
-treecheck: treeccheck.o txtImport.o
-	${CC} ${CFLAGS} txtImport.o -o treecheck
+treecheck: treecheck.o txtImport.o tree.o
+	${CC} ${CFLAGS} treecheck.o txtImport.o tree.o -o treecheck
 
 treecheck.o: treecheck.cpp
-	${CC} ${CFLAGS} -c treeccheck.cpp -o treeccheck.o
+	${CC} ${CFLAGS} -c treecheck.cpp -o treecheck.o
 
 txtImport.o: txtImport.cpp
 	${CC} ${CFLAGS} -c txtImport.cpp -o txtImport.o
+
+tree.o: tree.cpp
+	${CC} ${CFLAGS} -c tree.cpp -o tree.o
+
+.PHONY: clean
+clean:
+	rm -f *.o treecheck
