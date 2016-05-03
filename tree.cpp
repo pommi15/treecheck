@@ -23,7 +23,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-
+#include <algorithm>
 #include "tree.h"
 
 using namespace std;
@@ -32,6 +32,8 @@ Tree::Tree(){
   /* root is set to NULL */
   this->root = NULL;
   this->AVL = true;
+  this->min_first = true;
+  this->max_first = true;
 }
 /* destructor */
 Tree::~Tree(){
@@ -79,12 +81,22 @@ void Tree::insert(int key, node *leaf){
 /* public instert function that calls private insert function from root */
 void Tree::insert(int key){
   /* finds out minimum entered value */
-  if(key<this->min){
-    this->min = key;
+  if(min_first){
+    this->min_value = key;
+    min_first = false;
+  }else{
+    if(key<this->min_value){
+      this->min_value = key;
+    }
   }
   /* finds out maximum entered value */
-  if(key>this->max){
-    this->max = key;
+  if(max_first){
+    this->max_value = key;
+    max_first = false;
+  }else{
+    if(key>this->max_value){
+      this->max_value = key;
+    }
   }
   if(root!=NULL){
     /* if there is a vlaue stored in root insert is called again */
@@ -156,22 +168,19 @@ void Tree::AVL_check(node *leaf){
 void Tree::AVL_check(){
   return AVL_check(root);
 }
-
-int Tree::maxi(int a, int b){
-  if(a>b){
-    return a;
-  }else{
-    return b;
-  }
-}
+/* checks hight from a node downwards to make calculate the AVL value with
+  AVL_value = AVL_height(right) - AVL_heightleft)
+*/
 int Tree::AVL_height(node *leaf){
+  /* if right and left are NULL height is 0*/
   if(leaf->right == NULL && leaf->left == NULL){
     return 1;
+  /* if only right is NULL hight of left is checked */
   }else if (leaf->right == NULL){
     return AVL_height(leaf->left) + 1;
   }else if (leaf->left == NULL){
     return AVL_height(leaf->right) + 1;
   }else{
-    return maxi(AVL_height(leaf->left), AVL_height(leaf->right))+1;
+    return std::max(AVL_height(leaf->left), AVL_height(leaf->right))+1;
   }
 }

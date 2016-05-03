@@ -40,12 +40,13 @@ public:
   node *search(int key);
   void destroy_tree();
   void AVL_check();
-  int max;
-  int min;
+  int max_value;
+  bool max_first;
+  int min_value;
+  bool min_first;
   bool AVL;
 
 private:
-  int maxi(int a, int b);
   int AVL_height(node *leaf);
   void destroy_tree(node *leaf);
   void insert(int key, node *leaf);

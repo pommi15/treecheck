@@ -46,9 +46,6 @@ int main(int argc, char* argv[]){
   }else{
     cout << "AVL: no" << endl;
   }
-  cout << "max: "<< groot->max << " " << "min: " << groot->min << " "  << "avg: " << import->avg << endl;
-
-
-
+  cout << "max: "<< groot->max_value << " " << "min: " << groot->min_value << " "  << "avg: " << import->avg << endl;
   return 0;
 }
