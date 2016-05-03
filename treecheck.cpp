@@ -34,6 +34,11 @@ int main(int argc, char* argv[]){
     cout << "Please give a valid filepath!" << endl;
     return 0;
   }
+  if(argc == 1){
+    cout << "Invalid input!" << endl;
+    cout << "Please give a filepath!" << endl;
+    return 0;
+  }
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
   import->read(argv[1]);
