@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
   auto import = std::make_shared<TxtImport>();
   import->read(argv[1]);
   for(int i : import->input_vector) {
-    groot->insert(import->input_vector[i]);
+    groot->insert(i);
   }
   groot->AVL_check();
 

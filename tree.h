@@ -43,7 +43,10 @@ public:
   int max;
   int min;
   bool AVL;
+
 private:
+  int maxi(int a, int b);
+  int AVL_height(node *leaf);
   void destroy_tree(node *leaf);
   void insert(int key, node *leaf);
   node *search(int key, node *leaf);

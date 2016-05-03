@@ -52,13 +52,6 @@ void Tree::destroy_tree(){
 }
 /* function to insert values into tree recursively */
 void Tree::insert(int key, node *leaf){
-  if(key<this->min){
-    this->min = key;
-  }
-  if(key>this->max){
-    this->max = key;
-  }
-
   if(key < leaf->key_value){
     if(leaf->left!=NULL){
      insert(key, leaf->left);
@@ -68,19 +61,25 @@ void Tree::insert(int key, node *leaf){
       leaf->left->left=NULL;    //Sets the left child of the child node to null
       leaf->left->right=NULL;   //Sets the right child of the child node to null
     }
-  }else if(key>=leaf->key_value){
-    if(leaf->right!=NULL){
+  }else if(key > leaf->key_value){
+    if(leaf->right != NULL){
       insert(key, leaf->right);
     }else{
-      leaf->right=new node;
-      leaf->right->key_value=key;
-      leaf->right->left=NULL;  //Sets the left child of the child node to null
-      leaf->right->right=NULL; //Sets the right child of the child node to null
+      leaf->right = new node;
+      leaf->right->key_value = key;
+      leaf->right->left = NULL;  //Sets the left child of the child node to null
+      leaf->right->right = NULL; //Sets the right child of the child node to null
     }
   }
 }
 /* calls insert function from root */
 void Tree::insert(int key){
+  if(key<this->min){
+    this->min = key;
+  }
+  if(key>this->max){
+    this->max = key;
+  }
   if(root!=NULL){
     insert(key, root);
   }else{
@@ -112,17 +111,35 @@ node *Tree::search(int key){
 void Tree::AVL_check(node *leaf){
   int avl_value = 0;
   if(leaf->right != NULL){
-    ++avl_value;
+    avl_value = AVL_height(leaf->right);
     AVL_check(leaf->right);
   }
   if(leaf->left != NULL){
-    --avl_value;
+    avl_value -= AVL_height(leaf->left);
     AVL_check(leaf->left);
   }
   cout << "bal(" << leaf->key_value << ") = " << avl_value << endl;
 }
 void Tree::AVL_check(){
   return AVL_check(root);
+}
+int Tree::maxi(int a, int b){
+  if(a>b){
+    return a;
+  }else{
+    return b;
+  }
+}
+int Tree::AVL_height(node *leaf){
+  if(leaf->right == NULL && leaf->left == NULL){
+    return 1;
+  }else if (leaf->right == NULL){
+    return AVL_height(leaf->left) + 1;
+  }else if (leaf->left == NULL){
+    return AVL_height(leaf->right) + 1;
+  }else{
+    return maxi(AVL_height(leaf->left), AVL_height(leaf->right))+1;
+  }
 }
 
 

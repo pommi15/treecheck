@@ -35,7 +35,7 @@ TxtImport::~TxtImport(){
 }
 void TxtImport::read(std::string filepath){
   double temp_counter = 0.0;
-  std::ifstream input(filepath, std::ios::binary | ios::in);  // Open the file
+  std::ifstream input(filepath);  // Open the file
   std::string line;                                           // Temp variable
   while (std::getline(input, line)){     // Read lines as long as the file is
     this->input_vector.push_back(std::stoi(line)); // Save the line in the vector
