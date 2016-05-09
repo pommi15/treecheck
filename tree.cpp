@@ -32,7 +32,6 @@ Tree::Tree(){
   /* root is set to NULL */
   this->root = NULL;
   this->AVL = true;
-  this->first = true;
 }
 /* destructor */
 Tree::~Tree(){
@@ -46,6 +45,12 @@ void Tree::destroy_tree(node *leaf){
     destroy_tree(leaf->right);
     delete leaf;
   }
+}
+bool Tree::empty_check(){
+  if(this->root== NULL){
+    return true;
+  }
+  return false;
 }
 /* calls the private destroy_tree function on root */
 void Tree::destroy_tree(){
@@ -179,4 +184,42 @@ int Tree::AVL_height(node *leaf){
   }else{
     return std::max(AVL_height(leaf->left), AVL_height(leaf->right))+1;
   }
+}
+/* finds out rightmost value in the tree */
+void Tree::check_max(node *leaf){
+  if(leaf->right == NULL){
+    this->max_value = leaf->key_value;
+  }else{
+    check_max(leaf->right);
+  }
+}
+/* public function that calls the private check_max function on root */
+void Tree::check_max(){
+  check_max(root);
+}
+/* finds out leftmost value in the tree */
+void Tree::check_min(node *leaf){
+  if(leaf->left == NULL){
+    this->min_value = leaf->key_value;
+  }else{
+    check_min(leaf->left);
+  }
+}
+/* public function that calls the private check_min function on root */
+void Tree::check_min(){
+  check_min(root);
+}
+/* finds out average tree value */
+void Tree::check_avg(node *leaf){
+  this->avg += leaf->key_value;
+  this->avg_counter++;
+  if(leaf->right != NULL){
+    check_avg(leaf->right);
+  }
+  if(leaf->left != NULL){
+    check_avg(leaf->left);
+  }
+}
+void Tree::check_avg(){
+  check_avg(root);
 }

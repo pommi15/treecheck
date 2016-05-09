@@ -46,11 +46,19 @@ int main(int argc, char* argv[]){
   cout << "+---------------------------------+" << endl;
   auto groot = std::make_shared<Tree>();
   auto import = std::make_shared<TxtImport>();
+  /* read in txt file */
   import->read(argv[1]);
   for(int i : import->input_vector) {
     groot->insert(i);
   }
+  /* if file is empty no tree is checked */
+  if(groot->empty_check()){
+    cout << "Tree is empty!"<< endl;
+    return 0;
+  }
+  /* avl check */
   groot->AVL_check();
+
   cout << "+---------------------------------+"<< endl;
   cout << "|  Is this tree an AVL-Tree?";
   if(groot->AVL){
@@ -58,15 +66,19 @@ int main(int argc, char* argv[]){
   }else{
     cout << " No.  |" << endl;
   }
+  /* min max and avg function are called */
+  groot->check_min();
+  groot->check_min();
+  groot->check_avg();
 
   cout << "|  maximum entered value: "<< groot->max_value << "      |" << endl;
   cout << "|  minimum entered value: " << groot->min_value << "       |" << endl;
-  if(import->avg > 9.99 || import->avg < 0){
+  if((groot->avg / groot->avg_counter) > 9.99 || (groot->avg / groot->avg_counter) < 0){
     cout.precision(4);
-    cout << "|  average entered value: " << import->avg << "   |" << endl;
+    cout << "|  average entered value: " << (groot->avg / groot->avg_counter) << "   |" << endl;
   }else{
     cout.precision(3);
-    cout << "|  average entered value: " << import->avg << "    |" << endl;
+    cout << "|  average entered value: " << (groot->avg / groot->avg_counter) << "    |" << endl;
   }
   cout << "+---------------------------------+"<< endl;
 
