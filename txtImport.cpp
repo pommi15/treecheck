@@ -40,9 +40,6 @@ void TxtImport::read(std::string filepath){
   std::string line;                                // temp variable
   while (std::getline(input, line)){               // read lines as long as the file is
     this->input_vector.push_back(std::stoi(line)); // save the line in the vector
-    this->avg += std::stoi(line);
-    temp_counter++;
 
   }
-  this->avg /= temp_counter;
 }
