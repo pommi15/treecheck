@@ -35,7 +35,6 @@ TxtImport::~TxtImport(){
 }
 void TxtImport::read(std::string filepath){
   /* temp_counter counts how many numbers are read in to make an average */
-  double temp_counter = 0.0;
   std::ifstream input(filepath);                   // open the file
   std::string line;                                // temp variable
   while (std::getline(input, line)){               // read lines as long as the file is
