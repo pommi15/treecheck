@@ -28,10 +28,9 @@
 #include <fstream>
 
 class TxtImport {
-public:
-  TxtImport();                      //constructor
-  ~TxtImport();                     //destructor
-  std::vector<int> input_vector;    //vector for the read in numbers
-  void read(std::string filepath);  //function to read the numbers into the vector from given file
+ public:
+  TxtImport();  // constructor
+  std::vector<int> input_vector;  // vector for the read in numbers
+  void read(std::string filepath);  // function to read the numbers into the
 };
-  #endif //TXTIMPORT_H_
+#endif  // TXTIMPORT_H_

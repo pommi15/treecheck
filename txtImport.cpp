@@ -29,16 +29,12 @@
 
 using namespace std;
 
-TxtImport::TxtImport(){
-}
-TxtImport::~TxtImport(){
-}
-void TxtImport::read(std::string filepath){
-  /* temp_counter counts how many numbers are read in to make an average */
-  std::ifstream input(filepath);                   // open the file
-  std::string line;                                // temp variable
-  while (std::getline(input, line)){               // read lines as long as the file is
-    this->input_vector.push_back(std::stoi(line)); // save the line in the vector
-
+TxtImport::TxtImport() {}
+void TxtImport::read(string filepath) {
+  ifstream input(filepath);       // open the file
+  string line;                    // temp variable
+  while (std::getline(input, line)) {  // read lines as long as the file is
+    this->input_vector.push_back(
+        std::stoi(line));  // save the line in the vector
   }
 }
