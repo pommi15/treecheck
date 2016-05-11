@@ -33,8 +33,8 @@ TxtImport::TxtImport() {}
 void TxtImport::read(string filepath) {
   ifstream input(filepath);       // open the file
   string line;                    // temp variable
-  while (std::getline(input, line)) {  // read lines as long as the file is
+  while (getline(input, line)) {  // read lines as long as the file is
     this->input_vector.push_back(
-        std::stoi(line));  // save the line in the vector
+        stoi(line));  // save the line in the vector
   }
 }

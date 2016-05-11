@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     cout << " No.  |" << endl;
   }
   /* min max and avg function are called */
-  groot->check_min();
+  groot->check_max();
   groot->check_min();
   groot->check_avg();
 

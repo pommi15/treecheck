@@ -46,15 +46,16 @@ void Tree::destroy_tree(node* leaf) {
     delete leaf;
   }
 }
+/* calls the private destroy_tree function on root */
+void Tree::destroy_tree() {
+  destroy_tree(root);
+}
+/* checks if tree is empty */
 bool Tree::empty_check() {
   if (this->root == nullptr) {
     return true;
   }
   return false;
-}
-/* calls the private destroy_tree function on root */
-void Tree::destroy_tree() {
-  destroy_tree(root);
 }
 /* function to insert values into tree recursively */
 void Tree::insert(int key, node* leaf) {
@@ -84,18 +85,6 @@ void Tree::insert(int key, node* leaf) {
 }
 /* public instert function that calls private insert function from root */
 void Tree::insert(int key) {
-  /* finds out minimum and minimum entered value */
-  if (first) {
-    this->min_value = key;
-    this->max_value = key;
-    first = false;
-  } else {
-    if (key < this->min_value) {
-      this->min_value = key;
-    } else if (key > this->min_value) {
-      this->max_value = key;
-    }
-  }
   if (root != nullptr) {
     /* if there is a vlaue stored in root insert is called again */
     insert(key, root);
@@ -177,7 +166,7 @@ void Tree::AVL_check() {
   AVL_value = AVL_height(right) - AVL_height(left)
 */
 int Tree::AVL_height(node* leaf) {
-  /* if right and left are nullptr height is 0*/
+  /* if right and left are nullptr height is 1*/
   if (leaf->right == nullptr && leaf->left == nullptr) {
     return 1;
     /* if only right is nullptr hight of left is checked */
@@ -186,7 +175,7 @@ int Tree::AVL_height(node* leaf) {
   } else if (leaf->left == nullptr) {
     return AVL_height(leaf->right) + 1;
   } else {
-    return std::max(AVL_height(leaf->left), AVL_height(leaf->right)) + 1;
+    return max(AVL_height(leaf->left), AVL_height(leaf->right)) + 1;
   }
 }
 /* finds out rightmost value in the tree */

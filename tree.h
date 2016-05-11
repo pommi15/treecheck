@@ -39,7 +39,6 @@ class Tree {
   void destroy_tree();  // destroying the tree
   void AVL_check();  // checking if the is tree is an AVL tree
   int max_value;  // maximum entered value
-  bool first;  // bool to check if value is the first entered
   int min_value;  // minimum entered value
   bool AVL;  // bool to hold if tree is AVL
   double avg;
